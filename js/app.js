@@ -1,6 +1,14 @@
 const resultado = document.querySelector("#resultado");
+const yearOptions = document.querySelector("#year");
 
-document.addEventListener("DOMContentLoaded", mostrarAutos);
+const max = new Date().getFullYear();
+const min = max - 10;
+
+document.addEventListener("DOMContentLoaded", () => {
+  mostrarAutos();
+
+  llenarSelect();
+});
 
 function mostrarAutos() {
   autos.forEach((auto) => {
@@ -13,4 +21,17 @@ function mostrarAutos() {
 
     resultado.appendChild(autoHTML);
   });
+}
+
+function llenarSelect() {
+  for (i = max; i > min; i--) {
+    const yearHTML = document.createElement("option");
+    yearHTML.setAttribute("value", `${i}`);
+
+    yearHTML.textContent = `
+      ${i}
+    `;
+
+    yearOptions.appendChild(yearHTML);
+  }
 }
